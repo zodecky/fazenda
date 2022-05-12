@@ -5,10 +5,8 @@ def soma_el_r(lista): #Resolve listas com listas de inteiro dentro
             soma += elemento # soma o elemento ao somatorio, se for inteiro
         else:
             soma += soma_el_r(elemento) # passa a LISTA DE DENTRO para a função
-            
+
     return soma #saida da função
-    
-    
 
 
 #- - - - - - - - - - - - - - - PRINCIPAL - - - - - - - - - - - - - - - -#
