@@ -17,7 +17,7 @@ def galhos(t, distancia, angulo, fator, lvl, i):
         galhos(t, distancia, angulo, fator, lvl, i + 1)
         i += 1
     t.bk(distancia)
-    t.right(angulo/2)
+    t.right(angulo / 2)
 
 
 def arvore(t, distancia, angulo, fator, lvl):
@@ -26,8 +26,5 @@ def arvore(t, distancia, angulo, fator, lvl):
     t.fd(distancia)
     galhos(t, distancia, angulo, fator, lvl, 0)
 
+
 arvore(t, 100, 30, 0.8, 7)
-
-
-
-

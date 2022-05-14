@@ -15,10 +15,10 @@ r = 1
 res = 0
 while res != math.pi:
 
-    if n%2 == 0:    
-        res += 4/r
-    elif n%2 == 1:
-        res -= 4/r
+    if n % 2 == 0:
+        res += 4 / r
+    elif n % 2 == 1:
+        res -= 4 / r
     r += 2
 
     n += 1

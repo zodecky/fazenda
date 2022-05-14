@@ -1,6 +1,7 @@
-#Pedra papel e tesoura
+# Pedra papel e tesoura
 
 import random as r
+
 
 def resultado(usr, comp):
     if usr == comp:
@@ -11,6 +12,7 @@ def resultado(usr, comp):
         return "Você ganhou!"
     else:
         return "Jogo inválido"
+
 
 def jogada(n):
     if n == 1:
@@ -24,15 +26,15 @@ def jogada(n):
     return txt
 
 
-#PRINCIPAL
+# PRINCIPAL
 usr = int(input("Entre com sua escolha 1 (pedra), 2 (papel) ou 3 (tesoura):"))
-comp = r.randint(1,3)
+comp = r.randint(1, 3)
 txtusr = jogada(usr)
 txtcomp = jogada(comp)
 
 
-#OUTPUT
-print("Escolha do computador: %i"%comp)
-print("Escolha do usuário: %s"%txtusr)
-print("Escolha do computador: %s"%txtcomp)
+# OUTPUT
+print("Escolha do computador: %i" % comp)
+print("Escolha do usuário: %s" % txtusr)
+print("Escolha do computador: %s" % txtcomp)
 print(resultado(usr, comp))

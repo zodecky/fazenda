@@ -2,6 +2,7 @@
 
 import pyto_ui as ui
 
+
 class View(ui.VerticalStackView):
 
     def label(self) -> ui.Label:

@@ -1,4 +1,4 @@
-#Cifra de cesar UNIVERSAL
+# Cifra de cesar UNIVERSAL
 
 def crip(senha):
     if senha == "":
@@ -10,6 +10,7 @@ def crip(senha):
         letra_nova = chr(11 + ord(letra))
     return letra_nova + crip(senha[1:])
 
+
 def uncrip(senha):
     if senha == "":
         return ""
@@ -19,6 +20,7 @@ def uncrip(senha):
     else:
         letra_nova = chr(-11 + ord(letra))
     return letra_nova + uncrip(senha[1:])
+
 
 senha = "atacarBerlimAs23horas hoje+1dia"
 cript = crip(senha)
