@@ -19,7 +19,7 @@ def removeCaracter_r(palavra, caracter):
 """Função que checa se os parêntesis estão balanceados"""
 
 
-def check(myStr):
+def teste_parentesis(myStr):
     stack = []
     open_list = ["{", "[", "("]
     close_list = ["}", "]", ")"]
@@ -38,10 +38,18 @@ def check(myStr):
         return "Parêntesis desbalanceados!"
 
 
-def main_logica(txt):
+def separa_formula(formula: str) -> list:
+    saida = formula.find(sub[])
+    print(saida)
 
 
-txt = "∃y(∀xP(x)→P(y))"
-txt2 = "∀x(P(x)∧Q(x))→(∀xP(x)∧∀xQ(x))"
+def main():
+    txt = "∃y(∀xP(x)→P(y))"
+    txt2 = "∀x(P(x)∧Q(x))→(∀xP(x)∧∀xQ(x))"
 
-print(check(txt))
+    print(teste_parentesis(txt))
+    separa_formula(txt)
+
+
+if __name__ == '__main__':
+    main()
