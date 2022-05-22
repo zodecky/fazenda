@@ -17,9 +17,11 @@ def removeCaracter_r(palavra, caracter):
 
 
 """Função que checa se os parêntesis estão balanceados e retorna os pares de parêntesis"""
+
+
 def encontra_parens(formula):
-    tabela = {} # Dicionario q retorna os pares
-    stack_indices = [] # Guarda temporariamente o índice de cada
+    tabela = {}  # Dicionario q retorna os pares
+    stack_indices = []  # Guarda temporariamente o índice de cada
 
     for i, c in enumerate(formula):
         if c == '(':
@@ -34,12 +36,14 @@ def encontra_parens(formula):
 
     return tabela
 
+
 def get_key(my_dict, val):
     for key, value in my_dict.items():
-         if val == value:
-             return key
- 
+        if val == value:
+            return key
+
     raise IndexError("Key doesn't exist")
+
 
 def separa_formula(formula: str) -> list:
 
@@ -53,11 +57,11 @@ def separa_formula(formula: str) -> list:
     #   Caso verdade:
     #       retornar o tipo, o operador, a formula e o sinal (verdadeiro/falso).
     if (
-        
+
         (formula[index_abre + 1] == "∀" or formula[index_abre + 1] == "∃") and
-        formula[index_abre + 3] == "(" 
-        
-        ):
+        formula[index_abre + 3] == "("
+
+    ):
         # Saída:
         return {"operador": formula[index_abre + 1:index_abre + 3], "sinal": formula[0], "formula": formula[index_abre + 3:-2]}
 
@@ -75,7 +79,7 @@ def separa_formula(formula: str) -> list:
         print(index_abre_1, index_fecha_1, index_abre_2, index_fecha_2)
         print(tabela_parentesis)
 
-        
+
 # - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
 
 def main():
@@ -86,6 +90,6 @@ def main():
 
     separa_formula(txt3)
 
+
 if __name__ == '__main__':
     main()
-    
