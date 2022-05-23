@@ -58,26 +58,37 @@ def separa_formula(formula: str) -> list:
     #       retornar o tipo, o operador, a formula e o sinal (verdadeiro/falso).
     if (
 
+        # Testa se é o caso de ser uma substituição de letra
         (formula[index_abre + 1] == "∀" or formula[index_abre + 1] == "∃") and
         formula[index_abre + 3] == "("
 
     ):
         # Saída:
-        return {"operador": formula[index_abre + 1:index_abre + 3], "sinal": formula[0], "formula": formula[index_abre + 3:-2]}
+        operador = formula[index_abre + 1:index_abre + 3]
+        return {"tipo": "substituicao", "operador": operador, "sinal": formula[0], "formula": formula[index_abre + 3:-2]}
 
     # Caso falso:
     #   retornar o tipo, a primeira parte da formula, o operador,
     #   a segunda parte da formula e o sinal.
     else:
+        # Usa a função encontra_parens() para encontrar os pares de parêntesis da formula
         tabela_parentesis = encontra_parens(formula)
+        # Pega o primeiro parêntesis aberto
         index_abre_1 = min(tabela_parentesis.keys())
+        # Pega o último parêntesis fechado
         index_fecha_2 = max(tabela_parentesis.values())
 
+        # Pega os respectivos pares
         index_fecha_1 = tabela_parentesis[index_abre_1]
         index_abre_2 = get_key(tabela_parentesis, index_fecha_2)
 
-        print(index_abre_1, index_fecha_1, index_abre_2, index_fecha_2)
-        print(tabela_parentesis)
+        # Saída:
+        operador = formula[index_fecha_1 + 1]
+        formula_1 = formula[index_abre_1 + 1:index_fecha_1]
+        formula_2 = formula[index_abre_2 + 1:index_fecha_2]
+
+        # Separa a formula nas partes que serão passadas para a próxima função
+        return {"tipo": "resolucao", "operador": operador, "sinal": formula[0], "formula_1": formula_1, "formula_2": formula_2}
 
 
 # - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
@@ -88,7 +99,7 @@ def main():
     txt2 = "F(∀x(P(x)∧Q(x))→(∀xP(x)∧∀xQ(x)))"
     txt3 = "F(P(a)∧Q(a))→(∀xP(x)∧∀xQ(x))"
 
-    separa_formula(txt3)
+    print(separa_formula(txt2))
 
 
 if __name__ == '__main__':
