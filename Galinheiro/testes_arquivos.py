@@ -1,5 +1,5 @@
-aqr = open("arquivo.txt", "r")
+arq = open("Galinheiro/arquivo.txt", "r")
 
 for linha in arq:
-    print(linha)
+    print(linha, end="")
 arq.close()
