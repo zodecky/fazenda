@@ -2,8 +2,6 @@
 
 
 """Função usada para remover espaços que o usuário pode digitar"""
-
-
 def removeCaracter_r(palavra, caracter):
     if palavra == "":
         return ""
@@ -17,8 +15,6 @@ def removeCaracter_r(palavra, caracter):
 
 
 """Função que checa se os parêntesis estão balanceados e retorna os pares de parêntesis"""
-
-
 def encontra_parens(formula):
     tabela = {}  # Dicionario q retorna os pares
     stack_indices = []  # Guarda temporariamente o índice de cada
@@ -36,7 +32,6 @@ def encontra_parens(formula):
 
     return tabela
 
-
 def get_key(my_dict, val):
     for key, value in my_dict.items():
         if val == value:
@@ -44,13 +39,52 @@ def get_key(my_dict, val):
 
     raise IndexError("Key doesn't exist")
 
+def pega_operador(operador: str) -> str:
+    if operador == "→": return "implicação"
+    if operador == "∧": return "e"
+    if operador == "∨": return "ou"
+    if operador == "⇔": return "biequivalência"
+    if operador == "¬": return "negação"
 
-def separa_formula(formula: str) -> list:
+# - - - - - - - - - - - - - FORMULAS LOGICAS - - - - - - - - - - - - - - - #
+
+def resolve_implicacao(sinal: str, formula_1: str, formula_2: str) -> list:
+    if sinal == "F":
+        lista = [f"V({formula_1})", f"F({formula_2})"]
+    else:
+        lista = [[f"F({formula_1})"], [f"V({formula_1})", f"V({formula_2})"]]
+
+    return lista
+
+def resolve_e(sinal: str, formula_1: str, formula_2: str) -> list:
+    if sinal == "F":
+        lista = [[f"F({formula_1})"], [f"F({formula_2})"]]
+    else:
+        lista = [f"V({formula_1})", f"V({formula_2})"]
+    return lista
+
+def resolve_ou(sinal: str, formula_1: str, formula_2: str) -> list:
+    if sinal == "F":
+        lista = [f"F({formula_1})", f"F({formula_2})"]
+    else:
+        lista = [[f"V({formula_1})"], [f"V({formula_2})"]]
+    return lista
+
+def resolve_bi_implicacao(sinal: str, formula_1: str, formula_2: str) -> list:
+    if sinal == "F":
+        lista = [[f"V({formula_1})", f"F({formula_2})"], [f"F({formula_1})", f"V({formula_2})"]]
+    else:
+        lista = [[f"V({formula_1})", f"V({formula_2})"], [f"F({formula_1})", f"F({formula_2})"]]
+    return lista
+
+# - - - - - - - - - - - - - FORMULAS LOGICAS - - - - - - - - - - - - - - - #
+
+def separa_formula(formula: str) -> dict:
 
     # Pega o index do primeiro e último parêntesis da formula
     index_abre = formula.find("(")
     index_fecha = formula.rfind(")")
-# - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
+    # - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
 
     # Teste:
     #   Se o valor - 1 (anda 1 casas para frente) é ∃ ou ∀
@@ -91,15 +125,43 @@ def separa_formula(formula: str) -> list:
         return {"tipo": "resolucao", "operador": operador, "sinal": formula[0], "formula_1": formula_1, "formula_2": formula_2}
 
 
-# - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
+    # - - - - - - - - - - - - LOGICA DO RETORNO - - - - - - - - - - - - - #
+
+def resolve_formula(dicionario: dict) -> str:
+    sinal = dicionario["sinal"]
+    operador = dicionario["operador"]
+    tipo = dicionario["tipo"]
+    
+    if tipo == "resolucao":
+        formula_1 = dicionario["formula_1"]
+        formula_2 = dicionario["formula_2"]
+        
+        tipo_da_resolucao = pega_operador(operador)
+
+        if tipo_da_resolucao == "implicação":
+            return resolve_implicacao(sinal, formula_1, formula_2)
+        if tipo_da_resolucao == "e":
+            return resolve_e(sinal, formula_1, formula_2)
+        if tipo_da_resolucao == "ou":
+            return resolve_ou(sinal, formula_1, formula_2)
+
+        print(tipo_da_resolucao)
+
+    else:
+        formula = dicionario["formula"]
 
 def main():
 
     txt = "F(∃y(∀xP(x)→P(y)))"
     txt2 = "F(∀x(P(x)∧Q(x))→(∀xP(x)∧∀xQ(x)))"
     txt3 = "F(P(a)∧Q(a))→(∀xP(x)∧∀xQ(x))"
+    txt4 = "V(P(a)∧Q(a))→(∀xP(x)∧∀xQ(x))"
+    txt5 = "F(P(a)∨Q(a))→(∀xP(x)∨∀xQ(x))"
 
-    print(separa_formula(txt2))
+    formula_separada = separa_formula(txt4)
+    print(formula_separada)
+    formula_resolvida = resolve_formula(formula_separada)
+    print(formula_resolvida)
 
 
 if __name__ == '__main__':
