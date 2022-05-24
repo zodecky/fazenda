@@ -7,7 +7,7 @@ def removeCaracter_r(palavra, caracter):
         return ""
     if palavra[0] != caracter:
         # Caso diferente do caracter:
-        # Retorna a letra (adiciona a nova string)
+        # Retorna a letra (adiciona a nova string) 
         return palavra[0] + removeCaracter_r(palavra[1:], caracter)
     # Caso igual:
     # Não retorna a letra (adiciona aspas)
@@ -172,7 +172,7 @@ def main():
     txt4 = "V(P(a)∧Q(a))→(∀xP(x)∧∀xQ(x))"
     txt5 = "F(P(a)∨Q(a))→(∀xP(x)∨∀xQ(x))"
 
-    formula_separada = separa_formula(txt4)
+    formula_separada = separa_formula(txt)
     print(formula_separada)
     formula_resolvida = resolve_formula(formula_separada)
     print(formula_resolvida)
