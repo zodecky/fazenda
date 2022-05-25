@@ -9,6 +9,7 @@ qt_multiplo = 0
 
 print("Valores:")
 
+
 while n > 0:
     somador += acrescimo
 
