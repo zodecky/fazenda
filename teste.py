@@ -1,6 +1,6 @@
 def encontra_parens(formula):
-    tabela = {} # Dicionario q retorna os pares
-    stack_indices = [] # Guarda temporariamente o índice de cada
+    tabela = {}  # Dicionario q retorna os pares
+    stack_indices = []  # Guarda temporariamente o índice de cada
 
     for i, c in enumerate(formula):
         if c == '(':
@@ -14,5 +14,6 @@ def encontra_parens(formula):
         raise IndexError("No matching opening parens at: " + str(stack_indices.pop()))
 
     return tabela
+
 
 print(encontra_parens("(P(a)∧Q(a))→(∀xP(x∧∀xQ(x))"))
