@@ -4,6 +4,11 @@ proibidas = ["e", "o", "a", "ante", "após", "até", "com", "contra", "de",
              "não", "há", "ir", "me"]
 
 
+def Sort(sub_li):
+    sub_li.sort(key=lambda x: x[1], reverse=True)
+    return sub_li
+
+
 def tem_palavra(txt, word, inicio=False):
     if inicio:
         indice = txt.find(" ")
@@ -22,8 +27,8 @@ def limpa(txt):
     return txt
 
 
-with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as arquivo:
-    histolista = []  # Lista que tem o que vai ser usado no histograma
+with open("Chiqueiro/alvorada.txt") as arquivo:
+    histolista = []  # Lista que tem o que vai ter tudo usado no histograma
     master_lista = []  # Todas as palavras
 
     # Cria a master_lista
@@ -54,4 +59,6 @@ with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as a
             break
     # Até esse ponto, a histolista tem todos os valores
     # A partir, ela terá só os 10 maiores
-    print(histolista[i][1])
+    histolista = Sort(histolista)  # Sort do maior para o menor
+    histolista = histolista[0:10]
+    print(histolista)
