@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<!--
+
+
+- Timer da contagem regressiva da partida
+- Aviso caso desista (fim da partida)
+- Contagem regressiva nocaute
+- Pausar partida
+- X juízes (o primeiro a conectar pode inciar a partida)
+- Cada juíz ganha uma tag/id para saber o que mostrar na página
+
+Total pontos:
+  11 * número de juízes
+  Sendo:
+    5pt - agressividade
+    6pt - dano
+
+  Durante a partida:
+    Contagem de danos de cada robo
+    2 colunas coloridas
+
+    trivial
+    cosmetico
+    menor
+    significativo
+    maior
+    massivo
+
+    **Apenas tem como função de notas locais para o juiz
+    para ajudar a determinar o resultado
+    é atualizado no aparelho e mostra no canto da tela
+
+  Agressividade:
+
+    5 x 0 se um nunca ataca e o outro sempre ataca
+    4 x 1 e há dominio significante da partida (muitos ataques x poucos)
+    3 x 2 se é equilibrado (não há empates, precisa decidir ganhador)
+     **Colocar isso em botoes para cada juíz ao final da partida**
+     ***pintar o número com a cor de cada lado da arena***
+
+  Dano:
+
+    6 x 0
+    5 x 1
+    4 x 2
+    3 x 3
+    **Colocar isso em botoes para cada juíz ao final da partida**
+    ***pintar o número com a cor de cada lado da arena***
+
+
+ -->
+<html>
+<head>
+	<title>Areninha riobotz</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="design.css">
+</head>
+<body>
+	<h3>Juiz 1</h3>
+	<h1 id="timer"></h1>
+  <button type="button" id="botao_iniciar" onclick="iniciar_partida()">Iniciar partida</button>
+
+	<!-- Botoes ativos durante a partida-->
+	<div id="botoes_partida" style="display: none">
+
+		<!-- Esquerda -->
+		<button type="button" id="esquerdo_trivial" onclick="conta_ponto(trivial, esquerdo)">trivial 0</button>
+		<button type="button" id="esquerdo_cosmetico" onclick="conta_ponto(cosmetico, esquerdo)">cosmetico 0</button>
+		<button type="button" id="esquerdo_menor" onclick="conta_ponto(menor, esquerdo)">menor 0</button>
+		<button type="button" id="esquerdo_significativo" onclick="conta_ponto(significativo, esquerdo)">significativo 0</button>
+		<button type="button" id="esquerdo_maior" onclick="conta_ponto(maior, esquerdo)">maior 0</button>
+		<button type="button" id="esquerdo_massivo" onclick="conta_ponto(massivo, esquerdo)">massivo 0</button>
+
+		<!-- Direita -->
+		<button type="button" id="direito_trivial" onclick="conta_ponto(trivial, direito)">trivial 0</button>
+		<button type="button" id="direito_cosmetico" onclick="conta_ponto(cosmetico, direito)">cosmetico 0</button>
+		<button type="button" id="direito_menor" onclick="conta_ponto(menor, direito)">menor 0</button>
+		<button type="button" id="direito_significativo" onclick="conta_ponto(significativo, direito)">significativo 0</button>
+		<button type="button" id="direito_maior" onclick="conta_ponto(maior, direito)">maior 0</button>
+		<button type="button" id="direito_massivo" onclick="conta_ponto(massivo, direito)">massivo 0</button>
+	</div>
+	<!-- Botoes ativos durante a partida-->
+
+  <script type="text/javascript">
+
+
+	var controle_global = "espera"
+
+
+	// DEFINICOES DE NOMES DE BOTAO:
+	// (isso foi feito para consertar um problema, onde a função deveria ter uma entrada string,
+	//	mas, por conta da chamada ocorrer em HTML, ela vinha como nome de variável,
+	//	para consertar, cada variável foi dada o seu valor em string)
+			trivial 			= 	"trivial"
+			cosmetico 		= 	"cosmetico"
+			menor 				= 	"menor"
+			significativo = 	"significativo"
+			maior 				= 	"maior"
+			massivo 			= 	"massivo"
+
+		// Do lado do botão na interface:
+			esquerdo = "esquerdo"
+			direito = "direito"
+
+
+	function conta_ponto(tipo_do_ponto, lado_do_botao_na_interface, n=0) {
+
+		id = lado_do_botao_na_interface + "_" + tipo_do_ponto; // o id do botão é construido a partir
+
+		n = document.getElementById(id).innerHTML.substr(-2); // Pega o ultimo caracter da label do botão
+		n = parseInt(n) // Transforma em inteiro
+		n += 1;
+
+		// Altera a label do botão
+		document.getElementById(id).innerHTML = tipo_do_ponto + " " + n;
+	}
+
+	function contagem_regressiva(tempo, mensagem, display_minutos=true) {
+		// Tempo é a duração da contagem em segundos
+
+		/* Função que roda a cada segundo (nao utilizada variável _)
+		a function() também so é necessária,
+		pois a setInterval precisa de um parametro do tipo função*/
+		var funcao_intervalo = setInterval(function() {
+
+			// Separa o tempo em minutos e segundos
+			var segundos = Math.floor(tempo % 60);
+			var minutos = Math.floor(tempo - segundos) / 60;
+
+
+			// Mostra a contagem no elemendo de id "timer"
+			// Mostra os minutos ou não dependendo do estado da variável (padrao=true)
+			if (display_minutos) {
+				document.getElementById("timer").innerHTML = minutos + "m " + segundos + "s ";
+			} else {
+				document.getElementById("timer").innerHTML = segundos + "s ";
+			}
+
+
+
+
+			if (tempo < 1) {
+				// Troca a exibição do tempo pela mensagem definida na entrada
+				clearInterval(funcao_intervalo); // Para a contagem
+				document.getElementById("timer").innerHTML = mensagem;
+
+				// Controle para saber em qual parte do código está
+				if (controle_global == "espera") {
+					controle_global = "em andamento"
+					partida_iniciada();
+				}
+			}
+
+			// Diminui 1 da contagem
+			tempo -= 1
+
+		}, 1000); // 1000 milisegundos
+	}
+
+
+    function iniciar_partida() {
+			// Acionada quando o botão iniciar partida é apertado
+
+      console.log("Contagem regressiva inciada");
+			contagem_regressiva(5, "Partida iniciada!", false) // tempo em s, mensagem, display_minutos
+			document.getElementById('botao_iniciar').style.display = "none"; // para de mostrar o botão após iniciada
+
+    }
+
+		function partida_iniciada() {
+			// Acionada quando a contagem regressiva de 5s termina
+
+			contagem_regressiva(180, "Fim da partida!", true)
+			document.getElementById("botoes_partida").style.display = "block";
+		}
+
+  </script>
+</body>
+</html>

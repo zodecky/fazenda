@@ -1,6 +1,26 @@
-proibidas = ["a", "ante", "após", "até", "com", "contra", "de", "desde",
-             "em", "entre", "para", "perante", "por", "sem", "sob", "sobre",
-             "trás"]
+proibidas = ["e", "o", "a", "ante", "após", "até", "com", "contra", "de",
+             "desde", "em", "entre", "para", "perante", "por", "sem", "sob",
+             "sobre", "trás", "lá", "no", "que", "de", "tão", "é", "quando",
+             "não", "há", "ir", "me"]
+
+
+def tem_palavra(txt, word, inicio=False):
+    if inicio:
+        indice = txt.find(" ")
+        return txt[0:indice] == word
+    return ' ' + word + ' ' in ' ' + txt + ' '
+
+
+def limpa(txt):
+    for palavra_proibida in proibidas:
+        if tem_palavra(txt, palavra_proibida, inicio=True):
+            txt = txt.replace(palavra_proibida + " ", "", 1)
+
+        elif tem_palavra(txt, palavra_proibida):
+            txt = txt.replace(" " + palavra_proibida + " ", " ")
+
+    return txt
+
 
 with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as arquivo:
     histolista = []  # Lista que tem o que vai ser usado no histograma
@@ -9,6 +29,9 @@ with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as a
     # Cria a master_lista
     for linha in arquivo:
         linha = linha.lower()  # deixa tudo minúsculo
+        linha = linha.replace(",", "")
+        linha = limpa(linha)
+
         mini_lista = linha.split()  # transforma em uma lista
         for i, palavra in enumerate(mini_lista):
             master_lista.append(mini_lista[i])
@@ -29,7 +52,6 @@ with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as a
                     break
         except IndexError:
             break
-
-    print(histolista)
-
-print("Banan,nanana,".replace(",", ""))
+    # Até esse ponto, a histolista tem todos os valores
+    # A partir, ela terá só os 10 maiores
+    print(histolista[i][1])

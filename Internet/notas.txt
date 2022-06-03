@@ -1,0 +1,4 @@
+12, Aprovado
+70, Aprovado
+34, Aprovado
+23, Aprovado
