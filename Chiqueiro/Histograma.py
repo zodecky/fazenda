@@ -4,6 +4,15 @@ proibidas = ["e", "o", "a", "ante", "após", "até", "com", "contra", "de",
              "não", "há", "ir", "me"]
 
 
+# ************************* Funções turtle *******************************
+def Histograma(histo_lista):
+    pass
+
+# ************************* Funções turtle *******************************
+# --------------------------------------------------------------------------
+# ************************* Funções lógica *******************************
+
+
 def Sort(sub_li):
     sub_li.sort(key=lambda x: x[1], reverse=True)
     return sub_li
@@ -26,8 +35,10 @@ def limpa(txt):
 
     return txt
 
+# ************************* Funções lógica *******************************
 
-with open("Chiqueiro/alvorada.txt") as arquivo:
+
+with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as arquivo:
     histolista = []  # Lista que tem o que vai ter tudo usado no histograma
     master_lista = []  # Todas as palavras
 
