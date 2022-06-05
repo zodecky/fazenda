@@ -54,34 +54,45 @@ Total pontos:
 <head>
 	<title>Areninha riobotz</title>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="design.css">
+	<link rel="stylesheet" href="design.min.css">
+
+	<!-- boostrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	<div class="container">
+	<div class="row align-items-center">
 	<h3>Juiz 1</h3>
 	<h1 id="timer"></h1>
   <button type="button" id="botao_iniciar" onclick="iniciar_partida()">Iniciar partida</button>
+	</div>
 
 	<!-- Botoes ativos durante a partida-->
-	<div id="botoes_partida" style="display: none">
+
+	<div class="row">
+	<div class="col">
 
 		<!-- Esquerda -->
-		<button type="button" id="esquerdo_trivial" onclick="conta_ponto(trivial, esquerdo)">trivial 0</button>
-		<button type="button" id="esquerdo_cosmetico" onclick="conta_ponto(cosmetico, esquerdo)">cosmetico 0</button>
-		<button type="button" id="esquerdo_menor" onclick="conta_ponto(menor, esquerdo)">menor 0</button>
-		<button type="button" id="esquerdo_significativo" onclick="conta_ponto(significativo, esquerdo)">significativo 0</button>
-		<button type="button" id="esquerdo_maior" onclick="conta_ponto(maior, esquerdo)">maior 0</button>
-		<button type="button" id="esquerdo_massivo" onclick="conta_ponto(massivo, esquerdo)">massivo 0</button>
-
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_trivial" onclick="conta_ponto(trivial, esquerdo)">trivial 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_cosmetico" onclick="conta_ponto(cosmetico, esquerdo)">cosmetico 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_menor" onclick="conta_ponto(menor, esquerdo)">menor 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_significativo" onclick="conta_ponto(significativo, esquerdo)">significativo 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_maior" onclick="conta_ponto(maior, esquerdo)">maior 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="esquerdo_massivo" onclick="conta_ponto(massivo, esquerdo)">massivo 0</button></div>
+	</div>
+	<div class="col">
 		<!-- Direita -->
-		<button type="button" id="direito_trivial" onclick="conta_ponto(trivial, direito)">trivial 0</button>
-		<button type="button" id="direito_cosmetico" onclick="conta_ponto(cosmetico, direito)">cosmetico 0</button>
-		<button type="button" id="direito_menor" onclick="conta_ponto(menor, direito)">menor 0</button>
-		<button type="button" id="direito_significativo" onclick="conta_ponto(significativo, direito)">significativo 0</button>
-		<button type="button" id="direito_maior" onclick="conta_ponto(maior, direito)">maior 0</button>
-		<button type="button" id="direito_massivo" onclick="conta_ponto(massivo, direito)">massivo 0</button>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_trivial" onclick="conta_ponto(trivial, direito)">trivial 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_cosmetico" onclick="conta_ponto(cosmetico, direito)">cosmetico 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_menor" onclick="conta_ponto(menor, direito)">menor 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_significativo" onclick="conta_ponto(significativo, direito)">significativo 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_maior" onclick="conta_ponto(maior, direito)">maior 0</button></div>
+		<div class="row"><button type="button" class="botoes_partida" id="direito_massivo" onclick="conta_ponto(massivo, direito)">massivo 0</button></div>
+	</div>
+	</div>
 	</div>
 	<!-- Botoes ativos durante a partida-->
-
   <script type="text/javascript">
 
 
@@ -163,7 +174,7 @@ Total pontos:
 			// Acionada quando o botão iniciar partida é apertado
 
       console.log("Contagem regressiva inciada");
-			contagem_regressiva(5, "Partida iniciada!", false) // tempo em s, mensagem, display_minutos
+			contagem_regressiva(1, "Partida iniciada!", false) // tempo em s, mensagem, display_minutos
 			document.getElementById('botao_iniciar').style.display = "none"; // para de mostrar o botão após iniciada
 
     }
@@ -172,7 +183,7 @@ Total pontos:
 			// Acionada quando a contagem regressiva de 5s termina
 
 			contagem_regressiva(180, "Fim da partida!", true)
-			document.getElementById("botoes_partida").style.display = "block";
+			document.getElementById("botoes_partida").style.display = "inline-flex";
 		}
 
   </script>

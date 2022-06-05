@@ -6,7 +6,6 @@ alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 
 
 # - - - - - - - - - - - - - - Função que desloca listas - - - - - - - - - - -#
-
 def desloca(lista, deslocamento):  # desloca elementos de uma lista
     lista_deslocada = []  # cria a nova lista, que vai ser a deslocada
 
