@@ -140,7 +140,7 @@ def Histograma(histo_lista):
 def Nuvem(histo_lista):
     """Cria a turtle que desenha a nuvem."""
     turt = GabTurtle()
-    turt.speed(1)
+    turt.speed(7)
     turt.lt(180)
     for _ in range(7):
         turt.anda()
@@ -176,7 +176,7 @@ def limpa(txt):
 # ************************* Funções lógica *******************************
 
 
-with open("alvorada.txt") as arquivo:
+with open("/Users/Gabriel/Documents/GitHub/fazenda/Chiqueiro/alvorada.txt") as arquivo:
     histolista = []  # Lista que tem o que vai ter tudo usado no histograma
     master_lista = []  # Todas as palavras
 
