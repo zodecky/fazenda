@@ -1,4 +1,5 @@
 """gabriel zagury 2210912.
+   luiza marcondes 2210275
 
 o número de vitórias,
 o número de empates,
