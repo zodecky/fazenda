@@ -47,8 +47,8 @@ def remove_impares(lista):
 def busca(tabela, letra):
     for i, elemento in enumerate(tabela):
         if letra == elemento[0]:
-            return i + 1
-    return 0
+            return i
+    return -1
 
 
 def sequencia_caracteres(txt):
@@ -56,11 +56,11 @@ def sequencia_caracteres(txt):
     tabela = []
     for letra in txt:
         i_busca = busca(tabela, letra)
-        if i_busca:
-            tabela[i_busca - 1][1] += 1
+        if i_busca != -1:
+            tabela[i_busca][1] += 1
         else:
             tabela.append([letra, 1])
-    # tabela.sort()
+    tabela.sort()
     print(tabela)
 
 
