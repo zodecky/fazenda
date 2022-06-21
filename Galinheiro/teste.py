@@ -17,3 +17,4 @@ def encontra_parens(formula):
 
 
 print(encontra_parens("(P(a)∧Q(a))→(∀xP(x∧∀xQ(x))"))
+

@@ -1,4 +1,5 @@
-"""gabriel zagury 2210912.
+"""Gabriel Zagury 2210912.
+    Luiza Marcondes
 
 o número de vitórias,
 o número de empates,
@@ -76,7 +77,8 @@ def exibe_campeao(lista_pt, lista_de_saldos):
             n_1 += 1
             n_2 += 2
 
-        print(f"Os times {ganhadores} empataram e vão disputar em um campeonato decisivo")
+        print(
+            f"Os times {str(ganhadores)[1:-1]} empataram e vão disputar em um campeonato decisivo")
         return
     print(f"{mini_lista[0][0]} foi vencedor!")
     return
@@ -100,6 +102,5 @@ lista_pontuacao = cria_lista_pontuacao(lista_mestre)
 lista_saldos = lista_saldo_de_gols(lista_mestre)
 # Exibe lista:
 print(f"Lista de saldos:\n{lista_saldos}\n\n")
-exibe_mais_empates(lista_mestre)
 print(f"Lista de pontuações:\n{lista_pontuacao}\n\n")
 exibe_campeao(lista_pontuacao, lista_saldos)
