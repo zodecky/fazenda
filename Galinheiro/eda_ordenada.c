@@ -27,30 +27,34 @@ void lst_imprime(Lista *lst)
 
 Lista *lst_ord_insere(Lista *lst, int num)
 {
-    Lista *novo = (Lista *)malloc(sizeof(lst));
+    // cria um novo nó
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
+    // atribui o valor ao nó
     novo->numero = num;
-    novo->prox = lst;
-    if (lst == NULL) // se a lista esta vazia ou o numero for o menor
+    // verifica se a lista está vazia
+    if (lst == NULL)
     {
+        // se sim, o novo nó é o primeiro e único elemento da lista
+        novo->prox = NULL;
         return novo;
     }
-
-    // caso nao insira no inicio
-    Lista *p = lst;
+    // se não, procura a posição correta para o novo nó
     Lista *ant = NULL;
-    do
+    Lista *p = lst;
+    while (p != NULL && p->numero < num)
     {
-        if (p->numero < num)
-        {
-            ant = p;
-            p = p->prox;
-        }
-        else
-        {
-            novo->prox = p;
-            ant->prox = novo;
-        }
-    } while (p != NULL);
+        ant = p;
+        p = p->prox;
+    }
+    // se a lista está vazia ou o novo elemento for menor que o primeiro, insere no início
+    if (ant == NULL)
+    {
+        novo->prox = lst;
+        return novo;
+    }
+    // se não, insere no meio ou no fim
+    ant->prox = novo;
+    novo->prox = p;
     return lst;
 }
 
