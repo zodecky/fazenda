@@ -1,0 +1,21 @@
+1. 150 char signed -> 96 hex
+-3 short signed -> fffd hex
+-151 int signed -> ffffff69 hex
+
+2. ambos 1000 0000 0000 0011, em hexadecimal -> 0x8003
+eles possuem o mesmo valor na memória, pois um é um short e outro short sem sinal
+assim, percebe-se que a unica diferença é a maneira de interpretar o valor em binário.
+
+4. No prorgrama 1 x é menor que y, pois 0xffffffff se torna -1 (signed int)
+ou seja -1 < 2, logo x < y.
+
+No prorgrama 2 x não é menor que y, pois 0xffffffff se torna 4294967295 (unsigned)
+e para esse número ser exibido deve se usar %u, pois %d considera o número como signed.
+
+No prorgrama 3, x não é menor que y, pois a quando a comparacao é feita por dois valores de 
+tipos diferentes, a unidade com menor tamanho é convertida para a unidade com maior tamanho.
+
+5. signed char -1 -> binario 11111111 (0xff)
+para unsigned int -> 00000000 00000000 00000000 11111111 (0x000000ff)
+que se torna o número 255
+
