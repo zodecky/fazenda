@@ -1,5 +1,8 @@
+#include <stdio.h>
+
 void dump(void *p, int n)
 {
+    printf("dump de %p: \n", p);
     unsigned char *p1 = p;
     while (n--)
     {

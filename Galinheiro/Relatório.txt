@@ -18,4 +18,8 @@ tipos diferentes, a unidade com menor tamanho é convertida para a unidade com m
 5. signed char -1 -> binario 11111111 (0xff)
 para unsigned int -> 00000000 00000000 00000000 11111111 (0x000000ff)
 que se torna o número 255
+(errado)
 
+ao rodar o programa percebi que o resultado é 4294967295, pois
+ao converter o valor de -1 para unsigned int, ele se torna os bytes restantes
+sao preenchidos com 1, e o valor de -1 em binario é 11111111, que se torna 0xffffffff.

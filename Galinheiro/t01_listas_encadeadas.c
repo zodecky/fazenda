@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int num = 0;
+int num = 1;
 
 struct lista
 {
@@ -81,13 +81,21 @@ Lista *lst_insere(Lista *lst, char *prioridade)
 // imprime a lista
 void lst_imprime(Lista *lst)
 {
+    int verde = 0, amarela = 0, vermelha = 0;
     Lista *p = lst; // ponteiro para o elemento atual
     printf("\nImprimindo: \n");
     do
     {
+        if (strcmp(p->prioridade, "Verde") == 0)
+            verde = verde + 1;
+        if (strcmp(p->prioridade, "Amarela") == 0)
+            amarela = amarela + 1;
+        if (strcmp(p->prioridade, "Vermelha") == 0)
+            vermelha = vermelha + 1;
         printf("%d - %s\n", p->numero, p->prioridade); // imprime o elemento atual
         p = p->prox;                                   // atualiza o ponteiro para o próximo elemento
     } while (p != NULL);                               // repete até o final da lista
+    printf("Verdes: %d | Amarelas: %d | Vermelhas: %d \n", verde, amarela, vermelha);
     return;
 }
 
@@ -138,26 +146,29 @@ Lista *lst_remove(Lista *lst, int val)
 int main(void)
 {
     Lista *lst = lst_cria();
-    lst = lst_insere(lst, "Amarela");
+    lst = lst_insere(lst, "Verde");
     lst = lst_insere(lst, "Vermelha");
     lst = lst_insere(lst, "Verde");
     lst = lst_insere(lst, "Amarela");
     lst = lst_insere(lst, "Vermelha");
-    lst = lst_insere(lst, "Amarela");
-    lst = lst_insere(lst, "Verde");
-    lst_imprime(lst);
-    lst = lst_remove(lst, 3);
-    lst_imprime(lst);
-    lst = lst_remove(lst, 1);
-    lst_imprime(lst);
-
     lst = lst_insere(lst, "Vermelha");
-    lst = lst_insere(lst, "Amarela");
-    lst = lst_remove(lst, 6);
+    lst = lst_insere(lst, "Verde");
+    lst = lst_insere(lst, "Vermelha");
+    lst_imprime(lst);
+    lst = lst_remove(lst, 5);
     lst_imprime(lst);
     lst = lst_remove(lst, 4);
     lst_imprime(lst);
+
+    lst = lst_insere(lst, "Verde");
+    lst = lst_insere(lst, "Amarela");
+    lst = lst_insere(lst, "Vermelha");
+    lst = lst_insere(lst, "Amarela");
+    lst_imprime(lst);
     lst = lst_remove(lst, 2);
+    lst = lst_remove(lst, 6);
+    lst_imprime(lst);
+    lst = lst_remove(lst, 3);
     lst_imprime(lst);
     return 0;
 }
