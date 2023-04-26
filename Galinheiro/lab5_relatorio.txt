@@ -1,0 +1,16 @@
+1. 8 bytes (2 ints) + 4 bytes (1 ptr) = 12 e 4 + 4 * 2 + 2 * 3 = 18
+errado: pois o ponteiro não deve entrar na conta, pois caso a variavel
+seja global seu endereco é fixo e não ocupa espaço na pilha. (guardado na tabela de simbolos)
+
+2. O buraco é o padding, que serve para garantir o alinhamento da memoria.
+Ele serve para minimizar as operações de leitura.
+
+3- 
+a) 3 X 12
+b) 16 ok
+c) 8 ok
+d) 32 X 24
+e) 3 ok
+f) 12 X 16
+g) 8 ok
+h) 6 ok
