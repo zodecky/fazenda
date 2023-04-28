@@ -8,7 +8,6 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "/workspaces/fazenda/Galinheiro/lab9_2.s",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
